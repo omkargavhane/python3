@@ -1,0 +1,132 @@
+
+Installation of django and creating firstaplication in django
+
+1.we are using python3 here if your syastem has both python2.x and python3.x then you find that pip is installed on your ssystm which is of python2.x .socheck whether pip3 installed on your sysem or not
+	if not then install it as
+	$sudo apt-get install python3-pip
+2.after installation of pip3  to install third party module 
+	$pip3 install django
+	this will install latest version sometimes latest versions are not stable then 
+	you can specify version as
+	$pip3 install django==version
+3.make one directory where you can keep your all project
+	$mkdir dirname
+4.goto that directory
+	$cd dirname
+5.now run django administative level commnad
+	$django-admin startproject projectname
+
+6.now we will see directory structure
+	
+	django[dirname]
+	    |
+	    |---->hospital[projectname]
+
+
+change directory to projectname
+	
+	hospital[projectdir]
+	    |
+	    |---->hospital [django will create this PACKAGE  for us]
+	    |
+	    |---->manage.py [file for database operation’s]	
+
+change directory to  hospital
+	hospital[module hospital]
+	    |
+	    |---->__init__.py[this to make module]
+	    |
+	    |---->urls.py[all urls related to projects/applications is defined here]
+	    |
+	    |---->wsgi.py[explains how webserver communicates with application]
+	    |
+	    |---->settings.py[registering application,templates,stattic files with project  ]
+
+7.now goto hospital[projectdir] 
+	$python3 manage.py startapp applicationname
+	$python3 manage.py startapp firstapp
+
+8.goto  applicationfolder
+	direcory structure is like
+	
+	
+	firstapp
+	    |
+	    |--->admin.py  
+	    |	
+	    |---> apps.py 
+            |
+	    |---> __init__.py 
+	    |
+	    |---> migrations  
+   	    |	|->__init__.py
+	    |---> models.py  
+	    |
+	    |--->tests.py  
+	    |
+	    |--->views.py
+	    |
+	  
+
+
+9.first register  application with project
+	goto settings.py file,in that there is list of  INSTALLED_APPS
+	append your appname in it
+
++-------------------------------------------------------+
+|settings.py						|
++-------------------------------------------------------+
+|	INSTALLED_APPS = [				|
+|		    'django.contrib.admin',		|
+|		    'django.contrib.auth',		|
+|		    'django.contrib.contenttypes',	|
+|		    'django.contrib.sessions',		|
+|		    'django.contrib.messages',		|
+|		    'django.contrib.staticfiles',	|
+|		    'home',				|
+|		    ’firstapp’,				|
+|		]					|
++-------------------------------------------------------+
+
+
+10.now open views.py
+	it will look like
++-------------------------------------------------------------------------------+
+|views.py									|
++-------------------------------------------------------------------------------+
+|	from django.http import HttpResponse					|
+|										|
+|def hello(request):								|
+|	text=’’<h1>hi welcome to django</h1>”					|
+|	return									| HttpResponse(text)								|																																																																			
++-------------------------------------------------------------------------------+
+
+10.now define url for your app
+	goto urls.py  
++-----------------------------------------------------------------------------------------------------------------------+	
+|urls.py														|
++-----------------------------------------------------------------------------------------------------------------------|															|
+|	from django.conf.urls import url										|
+|	from django.contrib import admin										|
+|	from home import views												|
+|	from firstapp import views as fa   #import views file from your application dont forget to 	give aliace	|
+|															|
+|	urlpatterns = [													|
+|	    url(r'^admin/', admin.site.urls),										|
+|	    url(r'^$',views.welcome),											|		
+|	    url(r'^home/',fa.hello), #i have defined home as url 							|
+|		]													|
++-----------------------------------------------------------------------------------------------------------------------+
+
+11.now go to your project folderand runserver
+	$python3 manage.py runserver
+	copy the url 
+	 http://127.0.0.1:8000/
+	and paste it into your browsers searchbar
+	and make request for home i.e
+	 http://127.0.0.1:8000/home
+	and you will get 
+		
+		hi welcome to django
+	displayed on webpage
+
