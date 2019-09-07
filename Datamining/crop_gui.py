@@ -189,7 +189,7 @@ def askfile_dt(event):
         if isinstance(dt_inpt_lf,(tk.LabelFrame)) :
             dt_inpt_lf.destroy()
         dt_status_label.config(text='[Decision Tree]file selected.')
-        dt_dn,dt_sn=get_knowns(open('../crop.csv','r'))
+        dt_dn,dt_sn=get_knowns(open('./crop.csv','r'))
         #form_labrl_frame
         dt_inpt_lf=tk.LabelFrame(frame_dt,text='I/O',font=('Courier 17 bold'))
         dt_inpt_lf.pack(fill='x')
