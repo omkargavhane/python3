@@ -121,5 +121,5 @@ class hill_climb:
 
 
 if __name__=="__main__":
-    obj=hill_climb([int(e) for e in input('Enter space seperated numbers : \n').split()])
+    obj=hill_climb([ e for e in [int(e) for e in input('Enter space seperated numbers : \n').split()] if e])
     print(obj.print_pattern(),end="")
